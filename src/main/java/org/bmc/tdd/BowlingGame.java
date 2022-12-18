@@ -9,7 +9,11 @@ public class BowlingGame {
         int score = 0;
         int coursor = 0;
         for (int i = 0; i < 10; i++) {
-            if (rolls[coursor] + rolls[coursor+1] == 10) {
+            if(rolls[coursor] ==10){
+                score += 10 + rolls[coursor+1] +rolls[coursor+2];
+                coursor++;
+            }
+            if (isSpate(coursor)) {
                 score += 10 + rolls[coursor+2];
                 coursor +=2;
             } else{
@@ -22,5 +26,9 @@ public class BowlingGame {
 
     public void roll(int pins) {
         rolls[roll++] = pins;
+    }
+
+    private boolean isSpate(int coursor) {
+        return rolls[coursor] + rolls[coursor +1] == 10;
     }
 }

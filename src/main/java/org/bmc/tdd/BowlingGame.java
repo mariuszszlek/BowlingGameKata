@@ -3,7 +3,7 @@ package org.bmc.tdd;
 public class BowlingGame {
 
     int roll = 0;
-    private int[] rolls = new int[21];
+    private int[] rolls = new int[22];
 
     public int getScore() {
         int score = 0;
@@ -12,8 +12,7 @@ public class BowlingGame {
             if(rolls[coursor] ==10){
                 score += 10 + rolls[coursor+1] +rolls[coursor+2];
                 coursor++;
-            }
-            if (isSpate(coursor)) {
+            } else if (isSpate(coursor)) {
                 score += 10 + rolls[coursor+2];
                 coursor +=2;
             } else{

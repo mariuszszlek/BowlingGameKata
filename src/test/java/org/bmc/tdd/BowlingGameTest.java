@@ -25,32 +25,39 @@ class BowlingGameTest {
 
     @Test
     void shouldScore0WhenNoPinDown20Times() {
-        int numberOfThrows = 20;
-        int pins = 0;
-        roll(numberOfThrows, pins);
+        roll1(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
         assertThat(theGame.getScore()).isEqualTo(0);
     }
 
     @Test
     void shouldScore20WhenOnePinDown20Times() {
-        roll(20, 1);
+        roll1(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
         assertThat(theGame.getScore()).isEqualTo(20);
     }
 
     @Test
     void shouldScoreSpere() {
-        roll(2,5);
-        roll(1,4);
-        roll(17,0);
+        roll1(5,5,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
         assertThat(theGame.getScore()).isEqualTo(18);
     }
 
     @Test
     void shouldScoreStrike() {
-        roll(1,10);
-        roll(2,4);
-        roll(16,0);
+        roll1(10,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
         assertThat(theGame.getScore()).isEqualTo(26);
+    }
+
+    @Test
+    void shouldScoreMasterStrike() {
+        roll1(10,10,10,10,10,10,10,10,10,10,10,10);
+        assertThat(theGame.getScore()).isEqualTo(300);
+    }
+
+    private void roll1(int... pins){
+        for (int pin: pins) {
+            theGame.roll(pin);
+            
+        }
     }
 
     private void roll(int numberOfThrows, int pins) {
